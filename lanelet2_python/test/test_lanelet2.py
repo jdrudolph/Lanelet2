@@ -1,7 +1,7 @@
 import unittest
 import lanelet2  # if we fail here, there is something wrong with registration
-from lanelet2.core import AttributeMap, getId, BasicPoint2d, Point3d, LineString3d, Lanelet, RegulatoryElement, TrafficLight, LaneletMap, createMapFromLanelets
-from lanelet2.geometry import distance, intersects2d, boundingBox2d, to2D, intersection
+from lanelet2.core import AttributeMap, getId, BasicPoint2d, Point3d, LineString3d, Lanelet, RegulatoryElement, TrafficLight, LaneletMap, createMapFromLanelets, BoundingBox3d
+from lanelet2.geometry import distance, intersects2d, boundingBox2d, to2D, to3D, intersection
 
 
 def getAttributes():
@@ -105,6 +105,10 @@ class GeometryApiTestCase(unittest.TestCase):
         self.assertEqual(point_list[0].x, 0.0)
         self.assertEqual(point_list[0].y, 0.0)
 
+    def test_bounding_box_to_3d(self):
+        bbox2d = boundingBox2d(to2D(getLineString()))
+        bbox3d = to3D(bbox2d)
+        assert isinstance(bbox3d, BoundingBox3d)
 
 if __name__ == '__main__':
     unittest.main()
