@@ -56,7 +56,7 @@ RUN export LANELET2_VERSION=$(conan inspect ./src/lanelet2 --raw version) \
 
 RUN source /home/conan/src/lanelet2/activate.sh \
   && pip wheel -w broken-dist/ . \
-  && auditwheel repair -w dist/ --plat manylinux_2_28_x86_64 broken-dist/*.whl
+  && auditwheel repair -w dist/ --plat manylinux_2_27_x86_64 broken-dist/*.whl
 
 # to extract the wheel run:
 # $ docker run -it -v /path/to/some/local/folder:/dist lanelet2:3.8 /bin/bash
